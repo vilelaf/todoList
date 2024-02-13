@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { TaskList } from '../../model/task-list';
 
 @Component({
   selector: 'app-todo-button-delete-all',
@@ -6,5 +7,4 @@ import { Component } from '@angular/core';
   styleUrls: ['./todo-button-delete-all.component.scss']
 })
 export class TodoButtonDeleteAllComponent {
-
 }

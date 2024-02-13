@@ -1,37 +1,17 @@
-<section class="todo-list">
-    <ul>
-        <li>
-          <input type="checkbox">
-          <input type="text">
-          <button >
+<section [ngClass]="{'loading': !tasks.length }">
+    <ul *ngIf ="tasks.length">
+        <li *ngFor="let item of tasks; let i = index">
+          <input type="checkbox" [(ngModel)] = item.checked>
+          <input type="text" (keyup)="validatationInput(item.task, i)" [(ngModel)] = item.task 
+          [ngClass]="{'checked' : item.checked}">
+        <button (click) = "deleteTask(i)">
             <img src="assets/icons/icon-trash.svg" alt="Apagar tarefa">
-        </button>          
+        </button>
         </li>
-    
-
-    <li>
-        <input type="checkbox">
-        <input type="text" class ="checked">
-        <button >
-            <img src="assets/icons/icon-trash.svg" alt="Apagar tarefa">
-        </button>          
-      </li>
-
-
     </ul>
+</section>
+  
+<app-todo-input-add-itens (taskEmissor)="addTask($event)"></app-todo-input-add-itens>
+<app-todo-button-delete-all *ngIf ="tasks.length" (click)="deleteAllTasks()"></app-todo-button-delete-all>
 
-
-    <!-- <button >
-        <img class = "icone" src="assets/icons/trash.png" alt="Apagar tarefa">
-    </button> -->
-    <!-- <button>
-        <img src="assets/icons/plus.svg" alt="Adicionar tarefa">
-    </button>
-    <button>
-        <img src="assets/img/delete.svg" alt="Deletar todas as tarefas">
-    </button> -->
-
-
-</section>    
-<app-todo-input-add-itens></app-todo-input-add-itens>
-<app-todo-button-delete-all></app-todo-button-delete-all>
+  
